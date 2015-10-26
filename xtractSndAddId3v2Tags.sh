@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# to make executable...
 #chmod u+x xtractSndAddId3v2Tags.sh
 
 cd /mnt/disk2/courseraDownloads/coursera/audio-002/
@@ -44,23 +45,14 @@ do
 
 	echo "assign id3v2 tag"
  	id3v2 -D $file2;
-#  	id3v2 -2 $file2; # write only id3v2 tag
 	id3v2 --TIT1 "ASPMA course" $file2;
 	id3v2 --TIT2 "Chapter $weekNum" $file2;
 	id3v2 --TIT3 "$title" $file2;
 	id3v2 -a "Xavier Serra" $file2;
 	id3v2 -y "2015" $file2;
-#  	id3v2 --TIT1 "Economics of Money and Banking" $file2;
-#  	id3v2 --TIT2 "$title/Chapter $weekNum" $file2;
-#  	id3v2 -a "Perry G. Mehrling" $file2;
-#  	id3v2 -y "2015" $file2;
-# 
-#	id3v2 -T $str $file2;
+
 	id3v2 --TRCK $counter $file2;
-# 	id3v2 -A "week $weekNum" $file2;
-# 	id3v2 -A "Chapter $weekNum" $file2;
 	id3v2 --TALB "Audio Signal Processing for Music Applications" $file2;
-# 	echo $counter
     done
     
 done    

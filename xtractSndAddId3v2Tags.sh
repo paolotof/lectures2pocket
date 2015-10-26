@@ -12,13 +12,11 @@ do
     chapter=${directory/%/}
     echo $chapter
     for files in $directory/*.mp4
-#    for files in $directory/*.mp3
     do
 	let counter=counter+1
 	fileName=${files#0*//}
 	echo $fileName
 	file1="${fileName/%.mp4}.wav";
-#	file1="${fileName/%.mp3}.wav";
 	echo "extracting sound file" $fileName;
 	mplayer -ao pcm:fast:file=$file1 -vo null -vc null -ni $files;
 
@@ -34,12 +32,10 @@ do
 	title=${title/[0-9].};
 	str=`expr "$title" : '\([0-9]\)'`;
 	title=${title/[0-9][_]};
-	#file2="$title.ogg";
-	file2="$title.mp3"; # id3v2 tags seem not to work with ogg files 
+	file2="$title.mp3";  
 	echo "downsample and increase speed"
-	sox out.wav $file2 rate 8000 tempo -s 1.65 # process speech at 1.65 = 65% faster
-# 	sox out.wav $file2 rate 8000 # this guys speak quickly enough
-	
+	sox out.wav $file2 rate 8000 tempo -s 1.25 # process speech at 1.25 = 25% faster
+
 	rm -f out.wav;
 	rm -f $file1;
 
